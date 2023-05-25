@@ -1,1 +1,1 @@
-ALX simple shell version 1
+ALX - simple shell project
