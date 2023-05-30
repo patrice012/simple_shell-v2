@@ -22,6 +22,7 @@ int free_pointer(char *ptr, ...)
     }
     tmp = NULL;
     va_end(arg);
+    return (0);
 
 }
 
