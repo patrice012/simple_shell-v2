@@ -7,7 +7,10 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
+
+#define  MAX_NUMBER 1024
 
 extern int fd;
 
@@ -24,6 +27,7 @@ char *get_cmd_path(char *arg);
 /* helper functions */
 int _tokenizer(char *strings, char *delim, char **save_buffer);
 char *create_abs_path(char *arg1, char *arg2, char *save_buffer);
+char *_cmd_exist(char *arg, char *path);
 
 
 int free_pointer(char *ptr, ...);

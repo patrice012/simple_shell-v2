@@ -18,7 +18,7 @@ int process_cmd(char *line_buffer, char **cmd_array)
 
     while (cmd_array[i])
     {
-        printf("cmd arr %s\n", cmd_array[i]);
+        // printf("cmd arr %s\n", cmd_array[i]);
         av = (char **)malloc(sizeof(char *) * (strlen(cmd_array[i]) + 1));
         parse_cmd(cmd_array[i], av);
         i++;
