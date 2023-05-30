@@ -20,7 +20,8 @@ int main(int argc, char const *argv[])
             perror("Invalid command");
             break;
         }
-        cmd_array = (char **)malloc(sizeof(char) * 1);
+        /* need to free all array */
+        cmd_array = (char **)malloc(sizeof(char *) * (strlen(line) + 1));
         to_array_of_cmds(line, cmd_array);
         process_cmd(line, cmd_array);
     }
