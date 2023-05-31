@@ -19,7 +19,7 @@ extern int cmd_history;
 extern const char *program_name;
 
 void display_prompt(void);
-char *get_input(void);
+char *get_input();
 int _is_valid(char *str);
 int to_array_of_cmds(char *line, char **cmd_array);
 int parse_cmd(char *cmd, char **av);
@@ -35,6 +35,7 @@ char *create_abs_path(char *arg1, char *arg2, char *save_buffer);
 char *_cmd_exist(char *arg, char *path);
 int _is_executable(char *arg);
 pid_t create_process(void);
+int _is_interactive_mode(int fd);
 
 
 int free_pointer(char *ptr, ...);

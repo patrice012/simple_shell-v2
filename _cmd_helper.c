@@ -66,3 +66,11 @@ int _is_executable(char *arg)
     free(arg);
     return (found);
 }
+
+
+int _is_interactive_mode(int fd)
+{
+    if (isatty(fd))
+        return (1);
+    return (0);
+}
