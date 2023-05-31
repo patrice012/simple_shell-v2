@@ -14,9 +14,9 @@
 #define  MAX_NUMBER 1024
 
 extern int fd;
-extern char**environ;
+extern char **environ;
 extern int cmd_history;
-extern char*program_name;
+extern const char *program_name;
 
 void display_prompt(void);
 char *get_input(void);

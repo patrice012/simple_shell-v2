@@ -1,6 +1,7 @@
 #include "header.h"
 
 int fd;
+const char *program_name;
 
 
 
@@ -8,7 +9,7 @@ int main(int argc, char const *argv[])
 {
     char **cmd_array, *line = NULL;
     fd = STDIN_FILENO;
-    int l;
+    program_name = argv[0];
    
    while (1)
    {

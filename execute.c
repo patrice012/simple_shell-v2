@@ -11,7 +11,7 @@ int execute_cmd(char **args)
     if (path == NULL)
     {
         /* display command not found error message */
-        perror(args[0]);
+        perror(program_name);
         return (cmd_status); /* 1 for success and 0 for failure */
     }
     /* run system cmd */
@@ -35,7 +35,7 @@ int execute_system_cmd(char **args, char *path)
         _status = execve(path, args, environ);
         if (_status == -1)
         {
-            perror("Failed");
+            perror(program_name);
             exit(EXIT_FAILURE);
         }
     }
