@@ -45,7 +45,7 @@ done
 
 # valgrind --tool=memcheck --leak-check=full ./program
 
-valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes ./program
+valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./program
 
 # Cleanup (optional)
 rm program

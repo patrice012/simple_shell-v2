@@ -30,7 +30,10 @@ char *get_cmd_path(char *arg)
     {
         /* check if it is an executable file */
         if (_is_executable(strdup(arg)) == 0)
+        {
+            // perror(arg);
             return (NULL);
+        }
         else
             return (strdup(arg));
     }

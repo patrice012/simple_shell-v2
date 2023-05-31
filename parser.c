@@ -24,6 +24,7 @@ int process_cmd(char *line_buffer, char **cmd_array)
         parse_cmd(cmd_array[i], av);
         i++;
         cmd_status = execute_cmd(av);
+        // printf("cmd_history:%d\n", cmd_history);
         // if (cmd_status == 1)
         //     break;
     }

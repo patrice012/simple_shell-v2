@@ -1,15 +1,16 @@
 #include "header.h"
 
-int fd;
+int fd, cmd_history;
 const char *program_name;
 
 
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
     char **cmd_array, *line = NULL;
     fd = STDIN_FILENO;
     program_name = argv[0];
+    // cmd_history = 0;
    
    while (1)
    {
@@ -27,7 +28,7 @@ int main(int argc, char const *argv[])
         }
         else
             continue;/* no input => prompt shell again */
-        if (_is_interactive_mode(fd) == 0) /* cancel shell */
+        if (_is_interactive_mode(fd) == 0) /* False => cancel shell */
             break;
     }
     free_double_pointer(cmd_array);

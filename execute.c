@@ -3,20 +3,19 @@
 
 int execute_cmd(char **args)
 {
-    int cmd_status = 0;
+    int cmd_status = 1;
 
     /* free path after */
     char *path = get_cmd_path(args[0]); /* check if path is null*/
-    // printf("path:%s\n", path);
     if (path == NULL)
     {
         /* display command not found error message */
         perror(program_name);
-        return (cmd_status); /* 1 for success and 0 for failure */
+        return (cmd_status); /* 0 for success and 1 for failure */
     }
     /* run system cmd */
     cmd_status = execute_system_cmd(args, path);
-    // printf("end execute_cmd\n");
+    cmd_history++;
     return (cmd_status);
 
 }
