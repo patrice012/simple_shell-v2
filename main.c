@@ -15,11 +15,9 @@ int main(int argc, char const *argv[])
         display_prompt();
         line = get_input();
         line[strlen(line) - 1] = '\0';
+        /* no input => prompt shell again */
         if (_is_valid(line) == 0)
-        {
-            perror("Invalid command");
-            break;
-        }
+            continue;
         /* need to free all array */
         cmd_array = (char **)malloc(sizeof(char *) * (strlen(line) + 1));
         to_array_of_cmds(line, cmd_array);
