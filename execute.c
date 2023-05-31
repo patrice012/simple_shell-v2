@@ -3,80 +3,43 @@
 
 int execute_cmd(char **args)
 {
-    int i = 0;
-    pid_t pid;
+    int cmd_status = 0;
 
+    /* free path after */
     char *path = get_cmd_path(args[0]); /* check if path is null*/
-    printf("path:%s\n", path);
-    // pid = create_process()
-    // if (pid == 1)
-    // {
-    //     perror("fork");
-    //     exit(EXIT_SUCCESS);
-    // }
-    // if (pid == 0)
-    // {
-    //     execute_system_cmd()
-    // }
-
+    // printf("path:%s\n", path);
+    if (path == NULL)
+    {
+        /* display command not found error message */
+        perror(args[0]);
+        return (cmd_status); /* 1 for success and 0 for failure */
+    }
+    /* run system cmd */
+    cmd_status = execute_system_cmd(args, path);
+    // printf("end execute_cmd\n");
+    return (cmd_status);
 
 }
 
-char *get_cmd_path(char *arg)
-{
-    char *path = strdup(getenv("PATH")), *delim = ":"; /* not need to free  path*/
-    char **array_path = (char **)malloc(sizeof(char) * MAX_NUMBER); /* free */
-    char *cmd_path;
-    int i = 0;
 
-    if (path ==  NULL)
+
+int execute_system_cmd(char **args, char *path)
+{
+    pid_t child_pid;
+    int _status, child_status = -1;
+
+    child_pid = create_process();
+    /* create argv and envp array */
+    if (child_pid == 0)
     {
-        perror("Path does not exist");
-        return (NULL);
-    }
-    /* get all path */
-    _tokenizer(path, delim, array_path);
-    while(array_path[i])
-    {
-        /* check if command exist */
-        cmd_path = _cmd_exist(arg, array_path[i]);
-         if (cmd_path != NULL)
-            break;
-        i++;
-    }
-    if (cmd_path == NULL)
-    {
-        /* check if it is executable */
-        if (access(arg, X_OK) == -1)
+        _status = execve(path, args, environ);
+        if (_status == -1)
         {
-            perror(arg);
-            return (NULL);
+            perror("Failed");
+            exit(EXIT_FAILURE);
         }
-        else
-            return (arg);
     }
-    return (strdup(cmd_path));
-}
-
-
-char *_cmd_exist(char *arg, char *path)
-{
-    struct stat st;
-    /* we do +2 for / and NULL terminate */
-    char *absolute_path = (char *)malloc(sizeof(char) *  (strlen(arg) + strlen(path)) + 2);
-
-    create_abs_path(path, arg, absolute_path);
-    if (stat(absolute_path, &st) == 0)
-        return (absolute_path);
-    return (NULL);
-
-}
-
-
-char *create_abs_path(char *arg1, char *arg2, char *save_buffer)
-{
-    strcpy(save_buffer, arg1);
-    strcat(save_buffer, "/");
-    strcat(save_buffer, arg2);
-    strcat(save_buffer, "\0");
+    else if (child_pid > 0)
+        wait(&child_status);
+    return (child_status / 256);
 }
