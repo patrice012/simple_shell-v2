@@ -9,15 +9,16 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <unistd.h>
 
 
 #define  MAX_NUMBER 1024
-#define DEBUG 1
+#define DEBUG 0
 
 extern int fd;
 extern char **environ;
 extern int cmd_history;
-extern const char *program_name;
+extern char *program_name;
 
 void display_prompt(void);
 char *get_input();
@@ -28,6 +29,11 @@ int process_cmd(char *line_buffer, char **cmd_array);
 int execute_cmd(char **arg);
 char *get_cmd_path(char *arg);
 int execute_system_cmd(char **args, char *path);
+
+/** erros functions */
+int  permission_denied_error(char *cmd);
+int  not_found_error(char *cmd);
+
 
 
 /* helper functions */
@@ -41,5 +47,7 @@ int _is_interactive_mode(int fd);
 
 int free_pointer(char *ptr, ...);
 void free_double_pointer(char **av);
+void print_stdout(char *str);
+void print_stderror(char *str);
 
 #endif
