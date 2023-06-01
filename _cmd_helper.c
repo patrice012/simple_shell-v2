@@ -14,7 +14,8 @@ char *get_cmd_path(char *arg)
 
     if (path ==  NULL)
     {
-        perror("Path does not exist");
+        if (DEBUG)
+            perror("Path does not exist");
         return (NULL);
     }
     /* get all path sub-element */
