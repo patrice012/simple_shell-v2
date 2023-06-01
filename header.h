@@ -12,6 +12,7 @@
 
 
 #define  MAX_NUMBER 1024
+#define DEBUG 1
 
 extern int fd;
 extern char **environ;

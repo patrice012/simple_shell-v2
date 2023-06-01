@@ -6,7 +6,8 @@ int to_array_of_cmds(char *line, char **cmd_array)
     char *delim = "&|"; /* "& | ; > >>" */
     int id;
     id = _tokenizer(line, delim, cmd_array);
-    // printf("end to_array_of_cmds\n");
+    if (DEBUG)
+        printf("end to_array_of_cmds\n");
     return (id);
 
 }
@@ -19,7 +20,8 @@ int process_cmd(char *line_buffer, char **cmd_array)
 
     while (cmd_array[i])
     {
-        // printf("cmd arr %s\n", cmd_array[i]);
+        if (DEBUG)
+            printf("cmd arr %s\n", cmd_array[i]);
         av = (char **)malloc(sizeof(char *) * (strlen(cmd_array[i]) + 1));
         parse_cmd(cmd_array[i], av);
         i++;

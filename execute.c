@@ -27,6 +27,9 @@ int execute_system_cmd(char **args, char *path)
     pid_t child_pid;
     int _status, child_status = -1;
 
+    if (DEBUG)
+        printf("path: %s\n", path);
+
     child_pid = create_process();
     /* create argv and envp array */
     if (child_pid == 0)
