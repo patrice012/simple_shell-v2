@@ -8,11 +8,7 @@ int execute_cmd(char **args)
     /* free path after */
     char *path = get_cmd_path(args[0]); /* check if path is null*/
     if (path == NULL)
-    {
-        /* display command not found error message */
-        perror(program_name);
         return (cmd_status); /* 0 for success and 1 for failure */
-    }
     /* run system cmd */
     cmd_status = execute_system_cmd(args, path);
     cmd_history++;

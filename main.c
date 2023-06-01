@@ -1,7 +1,7 @@
 #include "header.h"
 
 int fd, cmd_history;
-const char *program_name;
+char *program_name;
 
 
 
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     fd = STDIN_FILENO;
     program_name = argv[0];
     // cmd_history = 0;
-   
+
    while (1)
    {
         if (_is_interactive_mode(fd) == 1)
