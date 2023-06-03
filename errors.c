@@ -2,6 +2,12 @@
 
 #define MAX_ARG 100
 
+/** _error - helper function to print error
+ * @str1: first string => program name
+ * @...: variable parameter
+ * The last argument must always be NULL
+ * Return: None
+ */
 void _error(char *str1, ...)
 {
     char *temp, **args_array;
