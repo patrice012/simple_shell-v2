@@ -7,12 +7,11 @@ int execute_cmd(char **args)
 
     /* free path after */
     char *path = get_cmd_path(args[0]); /* check if path is null*/
-    if (path == NULL)
-        return (cmd_status); /* 0 for success and 1 for failure */
-    /* run system cmd */
-    cmd_status = execute_system_cmd(args, path);
+    if (path != NULL)
+        /* run system cmd */
+        cmd_status = execute_system_cmd(args, path);    
     cmd_history++;
-    return (cmd_status);
+    return (cmd_status); /* 0 for success and 1 for failure */
 
 }
 

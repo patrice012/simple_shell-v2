@@ -50,4 +50,7 @@ void free_double_pointer(char **av);
 void print_stdout(char *str);
 void print_stderror(char *str);
 
+/* str helper */
+char *_itoa(int num);
+
 #endif
