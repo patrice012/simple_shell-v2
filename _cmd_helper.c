@@ -60,8 +60,9 @@ char *get_cmd_path(char *arg)
 char *_cmd_exist(char *arg, char *path)
 {
     struct stat st;
+    int len = strlen(arg) + strlen(path);
     /* we do +2 for / and NULL terminate */
-    char *absolute_path = (char *)malloc(sizeof(char) *  (strlen(arg) + strlen(path)) + 2);
+    char *absolute_path = (char *)malloc(sizeof(char) * len + 2);
 
     create_abs_path(path, arg, absolute_path);
     if (stat(absolute_path, &st) == 0)

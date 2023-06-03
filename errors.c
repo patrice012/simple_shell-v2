@@ -58,9 +58,15 @@ int  permission_denied_error(char *cmd)
  */
 int  not_found_error(char *cmd)
 {
-    print_stdout(cmd);
-    print_stdout(": ");
-    print_stdout("command not found\n");
+    char *sep, *msg, *hist;
+    sep = ": ";
+    msg = "command not found\n";
+    hist = _itoa(cmd_history);
+
+    _error(program_name, sep, hist, sep, cmd, sep, msg, NULL);
+    // print_stdout(cmd);
+    // print_stdout(": ");
+    // print_stdout("command not found\n");
 }
 
 /**
