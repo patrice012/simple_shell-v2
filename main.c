@@ -2,12 +2,15 @@
 
 int fd, cmd_history;
 char *program_name;
+int status_code;
+char *line;
 
 
 
 int main(int argc, char *argv[])
 {
-    char **cmd_array, *line = NULL;
+    char **cmd_array;
+    // extern char *line;
     fd = STDIN_FILENO;
     program_name = argv[0];
     // cmd_history = 0;

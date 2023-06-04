@@ -14,11 +14,29 @@
 
 #define  MAX_NUMBER 1024
 #define DEBUG 0
+#define PATH_MAX 4096
 
+extern int status_code;
 extern int fd;
-extern char **environ;
+extern char **environ, *line;
 extern int cmd_history;
 extern char *program_name;
+
+
+/**
+ * struct argsList - structure for our format and the corresponding function
+ * @ch: pointer to a character
+ * @f: pointer to a function
+ */
+
+ typedef struct builtin_function
+ {
+    char *cmd_name;
+    int (*func)(char **str);
+    
+ } b_func;
+
+
 
 void display_prompt(void);
 char *get_input();
@@ -29,6 +47,17 @@ int process_cmd(char *line_buffer, char **cmd_array);
 int execute_cmd(char **arg);
 char *get_cmd_path(char *arg);
 int execute_system_cmd(char **args, char *path);
+
+
+/* Built-in shell functions */
+int exit_shell(char **args);
+int _env(char **args);
+// char *format_cmd_line(char *str);
+int change_directory(char **args);
+// int alias(char **args);
+int _setenv(char **args);
+int _unsetenv(char **args);
+int _help(char **args __attribute__((unused)));
 
 /** erros functions */
 int  permission_denied_error(char *cmd);
@@ -50,7 +79,11 @@ void free_double_pointer(char **av);
 void print_stdout(char *str);
 void print_stderror(char *str);
 
+
+// int select_function(char *c);
+int (*select_function(char *c))(char **str);
+
 /* str helper */
 char *_itoa(int num);
-
+int is_numeric(char *s);
 #endif

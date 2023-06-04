@@ -4,6 +4,21 @@
 int execute_cmd(char **args)
 {
     int cmd_status = 1;
+    /* try to run builtin command */
+    int (*func)(char **str);
+    func = select_function(args[0]);
+    if (func != NULL)
+    {
+        cmd_history++;
+        cmd_status = func(args);
+        return (cmd_status);
+    }
+    // int i = 0;
+    // while (args[i])
+    // {
+    //     printf("args:%s\n", args[i]);
+    //     i++;
+    // }
 
     /* free path after */
     char *path = get_cmd_path(args[0]); /* check if path is null*/
