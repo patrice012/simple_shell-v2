@@ -7,17 +7,19 @@
  *
  * Return: Nothing
  */
-int _setenv(char *name, char *value)
+int _setenv(char **args)
 {
+	char *name = args[1], *value = args[2];
+
 	if (name == NULL || value == NULL || name[0] == '\0'
-		|| _strchr(name, '=') != NULL)
+		|| strchr(name, '=') != NULL)
 	{
-		print_err("Error: Invalid Arguments!\n");
+		print_stderror("Error: Invalid Arguments!\n");
 		return (-1);
 	}
 	if (setenv(name, value, 1) != 0)
 	{
-		print_err("setenv");
+		print_stderror("setenv");
 		return (-1);
 	}
 	return (0);
@@ -29,14 +31,16 @@ int _setenv(char *name, char *value)
  *
  * Return: Nothing
  */
-int _unsetenv(char *name)
+int _unsetenv(char **args)
 {
+	char *name = args[1];
+	
 	if (name == NULL)
 	{
-		print_err("Error: Invalid Arguments!\n");
+		print_stderror("Error: Invalid Arguments!\n");
 		return (-1);
 	}
 	if (unsetenv(name) != 0)
-		print_err("unsetenv");
+		print_stderror("unsetenv");
 	return (0);
 }
