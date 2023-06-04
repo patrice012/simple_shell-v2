@@ -3,13 +3,16 @@
 /**
  * _env - prints all environmental variables.
  */
-void _env(void)
+int _env(char **args __attribute__((unused)))
 {
 	int i;
 
 	for (i = 0; environ[i]; i++)
 	{
-		print_str(environ[i]);
-		print_str("\n");
+		if (!environ[i])
+			return (1);
+		print_stdout(environ[i]);
+		print_stdout("\n");
 	}
+	return (0);
 }
